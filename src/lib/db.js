@@ -31,6 +31,15 @@ const getSubjects = (request, response) => {
   })
 }
 
+const getTests = (request, response) => {
+  pool.query('SELECT * FROM tests ', (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(200).json(results.rows)
+  })
+}
+
 const createUser = (request, response) => {
   const { fullname, username, password, email, gender } = request.body
   pool.query(
@@ -50,4 +59,4 @@ const createUser = (request, response) => {
   )
 }
 
-export { getUsers, createUser, getSubjects }
+export { getUsers, createUser, getSubjects, getTests }

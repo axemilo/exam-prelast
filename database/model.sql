@@ -3,6 +3,7 @@ DROP TABLE IF EXISTS colleges CASCADE;
 DROP TABLE IF EXISTS facultets CASCADE;
 DROP TABLE IF EXISTS subjects CASCADE;
 DROP TABLE IF EXISTS setsubjects CASCADE;
+DROP TABLE IF EXISTS tests CASCADE;
 
 CREATE TABLE users (
   user_id serial PRIMARY KEY,
@@ -11,11 +12,13 @@ CREATE TABLE users (
   password varchar(16) NOT NULL,
   email varchar(25) NOT NULL UNIQUE,
   gender varchar(6) NOT NULL
+  college_id references colleges(college_id)
 );
 
 CREATE TABLE colleges(
   college_id serial PRIMARY KEY,
   college_name varchar(65) NOT NULL
+  
 );
 
 CREATE TABLE facultets(
@@ -41,6 +44,7 @@ CREATE TABLE tests(
   test_answer varchar(35) NOT NULL,
   subject_id references subjects(subject_id)
 );
+
 
 
 
